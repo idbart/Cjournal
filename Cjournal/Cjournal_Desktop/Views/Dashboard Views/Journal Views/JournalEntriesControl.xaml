@@ -1,0 +1,95 @@
+﻿<UserControl x:Class="Cjournal_Desktop.Views.Dashboard_Views.Journal_Views.JournalEntriesControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cjournal_Desktop.Views.Dashboard_Views.Journal_Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal" 
+             TextOptions.TextRenderingMode="Auto"        
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}">
+    <materialDesign:DialogHost x:Name="dialogHost" IsOpen="False">
+        <materialDesign:DialogHost.DialogContent>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Delete this entry?" Margin="20"></TextBlock>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="dialogDeleteButton" Click="dialogDeleteButton_Click" Content="Delete" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Margin="20"></Button>
+                    <Button x:Name="dialogCancelButton" Click="dialogCancelButton_Click" Content="Cancel" Style="{StaticResource MaterialDesignFlatAccentBgButton}" Margin="20"></Button>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:DialogHost.DialogContent>
+    
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+
+            <Grid Grid.Row="0" Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Date" Grid.Column="0" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="Resting heart rate" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="Exercise" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="Speed" Grid.Column="3" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="Resistance" Grid.Column="4" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Text="Time in THR zone" Grid.Column="5" Grid.Row="0" VerticalAlignment="Center"></TextBlock>
+            </Grid>
+
+
+            <ListView x:Name="dataView" SelectionChanged="dataView_SelectionChanged" Grid.Row="1" Grid.Column="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="980" Margin="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Orientation="Horizontal" Grid.Column="0"  Grid.Row="0">
+                                <TextBlock Text="{Binding date.Month}"></TextBlock>
+                                <TextBlock Text="/"></TextBlock>
+                                <TextBlock Text="{Binding date.Day}"></TextBlock>
+                                <TextBlock Text="/"></TextBlock>
+                                <TextBlock Text="{Binding date.Year}"></TextBlock>
+                            </StackPanel>
+                            <TextBlock Text="{Binding resting_heart_rate}" Grid.Column="1"  Grid.Row="0"></TextBlock>
+                            <TextBlock Text="{Binding exerciseName}" Grid.Column="2"  Grid.Row="0"></TextBlock>
+                            <TextBlock Text="{Binding speed}" Grid.Column="3"  Grid.Row="0"></TextBlock>
+                            <TextBlock Text="{Binding resistance}" Grid.Column="4" Grid.Row="0"></TextBlock>
+                            <TextBlock Text="{Binding time_in_THR_zone}" Grid.Column="5" Grid.Row="0"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </materialDesign:DialogHost>
+</UserControl>
